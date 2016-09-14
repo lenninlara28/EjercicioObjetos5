@@ -5,6 +5,9 @@
  */
 package interfaz;
 
+import clases.Cuenta;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp 14
@@ -14,9 +17,18 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    Cuenta c;
     public Principal() {
         initComponents();
+        cmdCrear.setEnabled(true);
+        cmdIngresar.setEnabled(false);
+        cmdEgreso.setEnabled(false);
+        cmdActualizar.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdNuevaCuenta.setEnabled(false);
+        cmdBorrar.setEnabled(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,10 +57,13 @@ public class Principal extends javax.swing.JFrame {
         cmdEgreso = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         cmdActualizar = new javax.swing.JButton();
+        txtInteres = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         cmdMostrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtMostrar = new javax.swing.JTextArea();
+        cmdBorrar = new javax.swing.JButton();
+        cmdNuevaCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +98,11 @@ public class Principal extends javax.swing.JFrame {
         cmdCrear.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdCrear.setForeground(new java.awt.Color(255, 255, 255));
         cmdCrear.setText("Crear");
+        cmdCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCrearActionPerformed(evt);
+            }
+        });
         jPanel2.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 70, 110, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 580, 110));
@@ -95,6 +115,11 @@ public class Principal extends javax.swing.JFrame {
         cmdIngresar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdIngresar.setForeground(new java.awt.Color(255, 255, 255));
         cmdIngresar.setText("OK");
+        cmdIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdIngresarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 230, 110));
@@ -107,20 +132,31 @@ public class Principal extends javax.swing.JFrame {
         cmdEgreso.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdEgreso.setForeground(new java.awt.Color(255, 255, 255));
         cmdEgreso.setText("OK");
+        cmdEgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdEgresoActionPerformed(evt);
+            }
+        });
         jPanel4.add(cmdEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 240, 100));
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actualizar Saldo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingrese Interes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmdActualizar.setBackground(new java.awt.Color(0, 0, 0));
         cmdActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdActualizar.setForeground(new java.awt.Color(255, 255, 255));
         cmdActualizar.setText("Actualizar");
-        jPanel5.add(cmdActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 130, -1));
+        cmdActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdActualizarActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cmdActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 130, -1));
+        jPanel5.add(txtInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 90, -1));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 230, 80));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 230, 100));
 
         jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,15 +165,43 @@ public class Principal extends javax.swing.JFrame {
         cmdMostrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         cmdMostrar.setForeground(new java.awt.Color(255, 255, 255));
         cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
         jPanel6.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtMostrar.setEditable(false);
+        txtMostrar.setColumns(20);
+        txtMostrar.setRows(5);
+        jScrollPane1.setViewportView(txtMostrar);
 
         jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 100));
 
+        cmdBorrar.setBackground(new java.awt.Color(0, 0, 0));
+        cmdBorrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
+
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 300, 160));
+
+        cmdNuevaCuenta.setBackground(new java.awt.Color(0, 0, 0));
+        cmdNuevaCuenta.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdNuevaCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        cmdNuevaCuenta.setText("Crear Nueva Cuenta");
+        cmdNuevaCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdNuevaCuentaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdNuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 170, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,12 +211,95 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(626, 472));
+        setSize(new java.awt.Dimension(626, 485));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
+        long numero_cuenta,id;
+        double saldo;
+        
+        if (txtSaldoActual.getText().isEmpty()){
+           numero_cuenta=Long.parseLong(txtNumeroDeCuenta.getText());
+        id=Long.parseLong(txtNit.getText()); 
+         c= new Cuenta (numero_cuenta, id);
+         JOptionPane.showMessageDialog(this,"Cuenta Creada Exitosamente Con Saldo En 0");
+        }else{
+        numero_cuenta=Long.parseLong(txtNumeroDeCuenta.getText());
+        id=Long.parseLong(txtNit.getText());
+        saldo=Double.parseDouble(txtSaldoActual.getText());
+        
+        c= new Cuenta (numero_cuenta, id, saldo);
+        JOptionPane.showMessageDialog(this,"Cuenta Creada Exitosamente");
+        }
+        cmdCrear.setEnabled(false);
+        cmdIngresar.setEnabled(true);
+        cmdEgreso.setEnabled(true);
+        cmdActualizar.setEnabled(true);
+        cmdMostrar.setEnabled(true);
+        cmdNuevaCuenta.setEnabled(true);
+        cmdBorrar.setEnabled(true);
+     
+    }//GEN-LAST:event_cmdCrearActionPerformed
+
+    private void cmdIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdIngresarActionPerformed
+      double aux;
+      aux=Integer.parseInt(txtIngreso.getText());
+      c.ingresar(aux);
+      JOptionPane.showMessageDialog(this,"Ingreso Exitoso");
+    }//GEN-LAST:event_cmdIngresarActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+        String aux;
+        aux=c.mostrar();
+        txtMostrar.append(aux);
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdEgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEgresoActionPerformed
+        double aux1,aux2;
+        aux1=Integer.parseInt(txtEgreso.getText());
+        aux2=c.getSaldo_actual();
+        if(aux1>aux2){
+            JOptionPane.showMessageDialog(this,"No Puede Retirar Esta Cantidad \n"
+                    + "**Saldo Insuficiente**","ERROR",JOptionPane.ERROR_MESSAGE);
+        }else{
+        c.retirar(aux1);
+        JOptionPane.showMessageDialog(this,"Retiro Exitoso");
+        }
+    }//GEN-LAST:event_cmdEgresoActionPerformed
+
+    private void cmdActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarActionPerformed
+        float aux;
+        aux=Float.parseFloat(txtInteres.getText());
+        c.actualizar(aux);
+        JOptionPane.showMessageDialog(this,"Interes Aplicado");
+    }//GEN-LAST:event_cmdActualizarActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtMostrar.setText("");
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdNuevaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdNuevaCuentaActionPerformed
+        txtNumeroDeCuenta.setText("");
+        txtNit.setText("");
+        txtSaldoActual.setText("");
+        txtIngreso.setText("");
+        txtEgreso.setText("");
+        txtInteres.setText("");
+        txtMostrar.setText("");
+        c=null;
+        txtNumeroDeCuenta.requestFocusInWindow();
+        cmdCrear.setEnabled(true);
+        cmdIngresar.setEnabled(false);
+        cmdEgreso.setEnabled(false);
+        cmdActualizar.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdNuevaCuenta.setEnabled(false);
+        cmdBorrar.setEnabled(false);
+    }//GEN-LAST:event_cmdNuevaCuentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,10 +338,12 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdActualizar;
+    private javax.swing.JButton cmdBorrar;
     private javax.swing.JButton cmdCrear;
     private javax.swing.JButton cmdEgreso;
     private javax.swing.JButton cmdIngresar;
     private javax.swing.JButton cmdMostrar;
+    private javax.swing.JButton cmdNuevaCuenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -206,9 +355,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txtEgreso;
     private javax.swing.JTextField txtIngreso;
+    private javax.swing.JTextField txtInteres;
+    private javax.swing.JTextArea txtMostrar;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNumeroDeCuenta;
     private javax.swing.JTextField txtSaldoActual;
