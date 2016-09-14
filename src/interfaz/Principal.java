@@ -194,7 +194,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 230, 100));
 
-        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.gray, null, null));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmdMostrar.setBackground(new java.awt.Color(0, 0, 0));
@@ -293,9 +293,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdIngresarActionPerformed
       double aux;
+      if(txtIngreso.getText().trim().isEmpty()){
+          JOptionPane.showMessageDialog(this,"Cuanto Va A Ingresar Ingresar");
+          txtIngreso.requestFocusInWindow();
+      }else{
       aux=Integer.parseInt(txtIngreso.getText());
       c.ingresar(aux);
       JOptionPane.showMessageDialog(this,"Ingreso Exitoso");
+      }
     }//GEN-LAST:event_cmdIngresarActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
@@ -306,6 +311,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdEgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEgresoActionPerformed
         double aux1,aux2;
+        if(txtEgreso.getText().trim().isEmpty()){
+          JOptionPane.showMessageDialog(this,"Cuanto Va A Retirar");
+          txtEgreso.requestFocusInWindow();
+      }else{
         aux1=Integer.parseInt(txtEgreso.getText());
         aux2=c.getSaldo_actual();
         if(aux1>aux2){
@@ -315,13 +324,19 @@ public class Principal extends javax.swing.JFrame {
         c.retirar(aux1);
         JOptionPane.showMessageDialog(this,"Retiro Exitoso");
         }
+        }
     }//GEN-LAST:event_cmdEgresoActionPerformed
 
     private void cmdActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarActionPerformed
         double aux;
+        if(txtInteres.getText().trim().isEmpty()){
+          JOptionPane.showMessageDialog(this,"Digite El Interes ");
+          txtInteres.requestFocusInWindow();
+      }else{
         aux=Double.parseDouble(txtInteres.getText());
         c.actualizar(aux);
         JOptionPane.showMessageDialog(this,"Interes Aplicado");
+        }
     }//GEN-LAST:event_cmdActualizarActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
