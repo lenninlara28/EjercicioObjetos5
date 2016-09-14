@@ -50,5 +50,31 @@ public class Cuenta {
     public void setSaldo_actual(double saldo_actual) {
         this.saldo_actual = saldo_actual;
     }
+     public void actualizar(double ian){
+        double aux,aux2;
+        aux=this.getSaldo_actual()*(ian / 365);
+        aux2=this.getSaldo_actual() + aux;
+        this.setSaldo_actual(aux2);
+        
+    }
+            
+    public void ingresar(double ingreso){
+        double aux;
+        aux=this.getSaldo_actual()+ingreso;
+        this.setSaldo_actual(aux);
+    }
     
+    public void retirar(double egreso){
+        double aux;
+        aux=this.getSaldo_actual()-egreso;
+        this.setSaldo_actual(aux);
+    }
+     
+    public String mostrar(){
+        String aux;
+        aux= "No° de la cuenta: "+this.getNumero_cuenta()+"\n"
+           + "No° de Identificacion: "+this.getNumero_id()+"\n"
+           + "Saldo Actual: "+this.getSaldo_actual();
+        return aux;
+    }
 }
