@@ -36,8 +36,19 @@ public class Principal extends javax.swing.JFrame {
         txtNit = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtSaldoActual = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtInteres = new javax.swing.JTextField();
+        cmdCrear = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        txtIngreso = new javax.swing.JTextField();
+        cmdIngresar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        txtEgreso = new javax.swing.JTextField();
+        cmdEgreso = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        cmdActualizar = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        cmdMostrar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,9 +56,9 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cuenta");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingrese Datos De Su Cuenta"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingrese Datos De Su Cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -66,15 +77,67 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Saldo Actual :");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
-        jPanel2.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 70, -1));
+        jPanel2.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 80, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel5.setText("Interes Anual :");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-        jPanel2.add(txtInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 90, -1));
+        cmdCrear.setBackground(new java.awt.Color(0, 0, 0));
+        cmdCrear.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdCrear.setForeground(new java.awt.Color(255, 255, 255));
+        cmdCrear.setText("Crear");
+        jPanel2.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 70, 110, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 580, 120));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 580, 110));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingresar Saldo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(txtIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 130, -1));
+
+        cmdIngresar.setBackground(new java.awt.Color(0, 0, 0));
+        cmdIngresar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        cmdIngresar.setText("OK");
+        jPanel3.add(cmdIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 230, 110));
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Retirar ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(txtEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 130, -1));
+
+        cmdEgreso.setBackground(new java.awt.Color(0, 0, 0));
+        cmdEgreso.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdEgreso.setForeground(new java.awt.Color(255, 255, 255));
+        cmdEgreso.setText("OK");
+        jPanel4.add(cmdEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 240, 100));
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actualizar Saldo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cmdActualizar.setBackground(new java.awt.Color(0, 0, 0));
+        cmdActualizar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        cmdActualizar.setText("Actualizar");
+        jPanel5.add(cmdActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 130, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 230, 80));
+
+        jPanel6.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cmdMostrar.setBackground(new java.awt.Color(0, 0, 0));
+        cmdMostrar.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        cmdMostrar.setForeground(new java.awt.Color(255, 255, 255));
+        cmdMostrar.setText("Mostrar");
+        jPanel6.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 100));
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 300, 160));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,10 +147,10 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(626, 399));
+        setSize(new java.awt.Dimension(626, 472));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,14 +190,25 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdActualizar;
+    private javax.swing.JButton cmdCrear;
+    private javax.swing.JButton cmdEgreso;
+    private javax.swing.JButton cmdIngresar;
+    private javax.swing.JButton cmdMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtInteres;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField txtEgreso;
+    private javax.swing.JTextField txtIngreso;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNumeroDeCuenta;
     private javax.swing.JTextField txtSaldoActual;
