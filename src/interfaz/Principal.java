@@ -80,18 +80,36 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("N° De Cuenta : ");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+
+        txtNumeroDeCuenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDeCuentaKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNumeroDeCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 100, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("NIT :");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
+
+        txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNitKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 110, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel4.setText("Saldo Actual :");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+
+        txtSaldoActual.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSaldoActualKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtSaldoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 80, -1));
 
         cmdCrear.setBackground(new java.awt.Color(0, 0, 0));
@@ -109,6 +127,12 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingresar Saldo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtIngreso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIngresoKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 130, -1));
 
         cmdIngresar.setBackground(new java.awt.Color(0, 0, 0));
@@ -126,6 +150,12 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Retirar ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 14))); // NOI18N
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtEgreso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEgresoKeyTyped(evt);
+            }
+        });
         jPanel4.add(txtEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 130, -1));
 
         cmdEgreso.setBackground(new java.awt.Color(0, 0, 0));
@@ -154,6 +184,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel5.add(cmdActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 130, -1));
+
+        txtInteres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtInteresKeyTyped(evt);
+            }
+        });
         jPanel5.add(txtInteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 90, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 230, 100));
@@ -221,9 +257,19 @@ public class Principal extends javax.swing.JFrame {
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
         long numero_cuenta,id;
         double saldo;
-        
-        if (txtSaldoActual.getText().isEmpty()){
-           numero_cuenta=Long.parseLong(txtNumeroDeCuenta.getText());
+        if (txtNumeroDeCuenta.getText().trim().isEmpty()||txtNit.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Ingrese Datos ","ERROR",JOptionPane.ERROR_MESSAGE);
+            txtNumeroDeCuenta.requestFocusInWindow();
+        cmdCrear.setEnabled(true);
+        cmdIngresar.setEnabled(false);
+        cmdEgreso.setEnabled(false);
+        cmdActualizar.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdNuevaCuenta.setEnabled(false);
+        cmdBorrar.setEnabled(false);}
+        else{ 
+        if (txtSaldoActual.getText().trim().isEmpty()){
+        numero_cuenta=Long.parseLong(txtNumeroDeCuenta.getText());
         id=Long.parseLong(txtNit.getText()); 
          c= new Cuenta (numero_cuenta, id);
          JOptionPane.showMessageDialog(this,"Cuenta Creada Exitosamente Con Saldo En 0");
@@ -242,7 +288,7 @@ public class Principal extends javax.swing.JFrame {
         cmdMostrar.setEnabled(true);
         cmdNuevaCuenta.setEnabled(true);
         cmdBorrar.setEnabled(true);
-     
+        }
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdIngresarActionPerformed
@@ -272,8 +318,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdEgresoActionPerformed
 
     private void cmdActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdActualizarActionPerformed
-        float aux;
-        aux=Float.parseFloat(txtInteres.getText());
+        double aux;
+        aux=Double.parseDouble(txtInteres.getText());
         c.actualizar(aux);
         JOptionPane.showMessageDialog(this,"Interes Aplicado");
     }//GEN-LAST:event_cmdActualizarActionPerformed
@@ -300,6 +346,48 @@ public class Principal extends javax.swing.JFrame {
         cmdNuevaCuenta.setEnabled(false);
         cmdBorrar.setEnabled(false);
     }//GEN-LAST:event_cmdNuevaCuentaActionPerformed
+
+    private void txtNumeroDeCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDeCuentaKeyTyped
+         char c=evt.getKeyChar(); 
+           if(Character.isLetter(c)) { 
+               getToolkit().beep(); 
+               evt.consume();}
+    }//GEN-LAST:event_txtNumeroDeCuentaKeyTyped
+
+    private void txtNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNitKeyTyped
+        char c=evt.getKeyChar(); 
+           if(Character.isLetter(c)) { 
+               getToolkit().beep(); 
+               evt.consume();}
+    }//GEN-LAST:event_txtNitKeyTyped
+
+    private void txtSaldoActualKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSaldoActualKeyTyped
+        char c=evt.getKeyChar(); 
+           if(!Character.isDigit(c)) { 
+               getToolkit().beep(); 
+               evt.consume();}
+    }//GEN-LAST:event_txtSaldoActualKeyTyped
+
+    private void txtIngresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIngresoKeyTyped
+        char c=evt.getKeyChar(); 
+           if(!Character.isDigit(c)) { 
+               getToolkit().beep(); 
+               evt.consume();}
+    }//GEN-LAST:event_txtIngresoKeyTyped
+
+    private void txtEgresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEgresoKeyTyped
+       char c=evt.getKeyChar(); 
+           if(!Character.isDigit(c)) { 
+               getToolkit().beep(); 
+               evt.consume();}
+    }//GEN-LAST:event_txtEgresoKeyTyped
+
+    private void txtInteresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtInteresKeyTyped
+       char c=evt.getKeyChar();
+           if(Character.isLetter(c)){ 
+               getToolkit().beep(); 
+               evt.consume();}
+    }//GEN-LAST:event_txtInteresKeyTyped
 
     /**
      * @param args the command line arguments
